@@ -5,6 +5,7 @@
 }
 
 footer{
-    position: fixed;
+    position: sticky;
     bottom: 2px;
+    margin: 10px;
 }
