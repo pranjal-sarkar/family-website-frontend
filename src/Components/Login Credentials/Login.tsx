@@ -43,7 +43,7 @@ const Login = () => {
     localStorage.setItem('key', response.data.token);
 
     if(response.data.data === "Successful Login"){
-      navigate("/");
+      await navigate("/");
     }
   }
 
