@@ -20,7 +20,8 @@ const Anthology = () => {
     useEffect(() => {
         // fetch token from local storage
         const token = localStorage.getItem('key');
-        axios.get("http://localhost:8000/api/v1.0.0/anthology/secured/story", {
+        // axios.get("http://localhost:8000/api/v1.0.0/anthology/secured/story", {
+        axios.get("https://ekata-backend.onrender.com/api/v1.0.0/anthology/secured/story", {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -61,7 +62,7 @@ const Anthology = () => {
 
             console.log("messageText in postStory: " + messageText);
 
-            const response = await axios.patch("http://localhost:8000/api/v1.0.0/anthology/secured/story", {
+            const response = await axios.patch("https://ekata-backend.onrender.com/api/v1.0.0/anthology/secured/story", {
                 story: messageText
             }, {
                 headers: {
