@@ -14,7 +14,7 @@ import Footer from '../../Components/Footer/Footer.tsx';
 import axios from 'axios';
 
 const Anthology = () => {
-    const [messageText, setMessageText] = useState("ff");
+    const [messageText, setMessageText] = useState("");
     const [postStoryText, setPostStoryText] = useState('');
 
     useEffect(() => {
