@@ -15,6 +15,7 @@ import axios from 'axios';
 
 const Anthology = () => {
     const [messageText, setMessageText] = useState("ff");
+    const [postStoryText, setPostStoryText] = useState('');
 
     useEffect(() => {
         // fetch token from local storage
@@ -29,7 +30,7 @@ const Anthology = () => {
 
             changeState(results.data.data.story);
             // setMessageText(results.data.data.story);
-            console.log("messageText: " + messageText);
+            // console.log("messageText: " + messageText);
         }).catch((error) => {
             console.log(error);
         })
@@ -37,20 +38,44 @@ const Anthology = () => {
 
     function changeState(myInput) {
         setMessageText(myInput);
-        console.log("messageText (inside changeState() function): " + messageText);
+        // console.log("messageText (inside changeState() function): " + messageText);
     }
 
     const handleChangeTextArea = (e) => {
         setMessageText(e.target.value);
 
-        console.log(messageText);
+        console.log("messageText in handleChangeTextArea: " + messageText);
+        // setPostStoryText(messageText + " " + e.target.value);
+
+        // console.log(e.target.value);
     }
 
-    useEffect(() => {
-        console.log("messageText in useEffect hook: " + messageText);
-    }, [messageText])
+    // useEffect(() => {
+    //     console.log("messageText in useEffect hook: " + messageText);
+    // }, [messageText])
 
-    console.log("Hello");
+    const postStory = async () => {
+        try {
+            // fetch token from local storage
+            const token = localStorage.getItem('key');
+
+            console.log("messageText in postStory: " + messageText);
+
+            const response = await axios.patch("http://localhost:8000/api/v1.0.0/anthology/secured/story", {
+                story: messageText
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
+
+            console.log("Posting after Save button was clicked!");
+            console.log(response);
+        } catch (error) {
+            console.log("There was some error saving your story. Error: \n");
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -69,7 +94,7 @@ const Anthology = () => {
                         See others' story
                     </div>
                     <div className="save-button">
-                        <button>SAVE WORK</button>
+                        <button onClick={postStory}>SAVE WORK</button>
                     </div>
                 </div>
             </div>

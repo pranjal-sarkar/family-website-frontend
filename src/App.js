@@ -13,8 +13,6 @@ function App() {
 
   const token = localStorage.getItem('key');
 
-
-
   return (
     <>
       <BrowserRouter>
