@@ -6,7 +6,7 @@ const Footer = () => {
     <>
         <div className="footer-container">
             <footer>
-                Made With &#10084; by Tatai Sarkar
+                Made With &#10084; by Tatai
             </footer>
         </div>
     </>

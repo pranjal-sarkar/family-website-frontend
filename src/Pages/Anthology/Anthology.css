@@ -10,6 +10,8 @@
 .story textarea {
     height: 70vh;
     width: 50vw;
+
+    border: 2px solid rgb(53, 53, 239);
 }
 
 @media(max-width: 768px){

@@ -8,7 +8,16 @@ import { CardActionArea } from '@mui/material';
 // importing image
 import DadaWriting from "../../Assets/DadaWriting.jpeg";
 
+// importing hooks
+import { useNavigate } from 'react-router-dom';
+
 export default function ActionAreaCard() {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/anthology");
+    }
+
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
@@ -17,6 +26,7 @@ export default function ActionAreaCard() {
                     height="200"
                     image={DadaWriting}
                     alt="green iguana"
+                    onClick={handleClick}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
