@@ -56,10 +56,14 @@ const Login = () => {
         navigate("/");
         console.log("In the function to navigate(2)");
       }
+      else if(response.data.data === "Family Member With This Phone Number Not Found. Please Sign Up"){
+        alert("Please Register before using the app.");
+      }
 
 
     } catch (error) {
       alert("There was some problem with the Login");
+      console.log(error);
     }
   }
 
