@@ -24,26 +24,39 @@ const Login = () => {
     console.log(password);
   }
 
-  const handleSubmit = async (event) => {
+  const loginSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(contactNumber);
-    console.log(password);
+    // console.log("first");
+    // navigate("/");
 
-    const params = {
-      "contactNumber" : contactNumber,
-      "password": password
-    }
+    try {
+      console.log(contactNumber);
+      console.log(password);
 
-    const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-login", params);
+      const params = {
+        "contactNumber" : contactNumber,
+        "password": password
+      }
 
-    console.log(response);
+      const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-login", params);
+      // const response = await axios.post("http://localhost:8000/api/v1.0.0/authentication/member-login", params);
 
-    // storing JWT Token in 
-    localStorage.setItem('key', response.data.token);
+      console.log(response);
 
-    if(response.data.data === "Successful Login"){
-      await navigate("/");
+      // storing JWT Token in local storage
+      localStorage.setItem('key', response.data.token);
+      localStorage.setItem('name', response.data.name);
+
+      if(response.data.data === "Successful Login"){
+        console.log("In the function to navigate(1)");
+        navigate("/");
+        console.log("In the function to navigate(2)");
+      }
+
+
+    } catch (error) {
+      alert("There was some problem with the Login");
     }
   }
 
@@ -52,7 +65,7 @@ const Login = () => {
       <div className="login-components">
         <h1>LOGIN</h1>
         <div className="form-tag">
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="contact-input">
               <input type="number" placeholder='Enter Your Contact Number' onChange={handleChangeContact} />
             </div>
@@ -62,7 +75,7 @@ const Login = () => {
             </div>
 
             <div className="login-submit-button">
-              <button type="submit">LOGIN</button>
+              <button type="submit" onClick={loginSubmit}>LOGIN</button>
             </div>
           </form>
         </div>

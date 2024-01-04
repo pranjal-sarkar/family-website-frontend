@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 
 // importing components
@@ -8,8 +8,14 @@ import ActionAreaCard from '../../Components/Cards/Card.tsx';
 
 // importing images
 import account_image from '../../Assets/Account_Image.png';
+import axios from 'axios';
 
 const Home = () => {
+  // const [name, setName] = useState();
+  
+  // get the name
+  const fetchedName = localStorage.getItem('name');
+  
   return (
     <>
         <ResponsiveAppBar />
@@ -19,7 +25,7 @@ const Home = () => {
         </div>
 
         <div className="account-name-heading">
-            <h1>Welcome Tatai</h1>
+            <h1>Welcome {fetchedName}</h1>
         </div>
 
         <div className="cards">
