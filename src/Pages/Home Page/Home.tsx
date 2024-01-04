@@ -8,7 +8,6 @@ import ActionAreaCard from '../../Components/Cards/Card.tsx';
 
 // importing images
 import account_image from '../../Assets/Account_Image.png';
-import axios from 'axios';
 
 const Home = () => {
   // const [name, setName] = useState();
