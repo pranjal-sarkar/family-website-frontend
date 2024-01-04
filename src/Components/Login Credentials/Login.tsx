@@ -6,7 +6,10 @@ import { useState } from 'react';
 
 // importing packages
 import axios from 'axios';
+
+
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -75,6 +78,7 @@ const Login = () => {
             </div>
 
             <div className="login-submit-button">
+              <p><NavLink to="/sign-up">Or Click to Register</NavLink> </p>
               <button type="submit" onClick={loginSubmit}>LOGIN</button>
             </div>
           </form>

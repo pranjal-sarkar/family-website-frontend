@@ -6,7 +6,9 @@ import { useState } from 'react';
 
 // import packages
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
+//
+import { useNavigate, NavLink } from 'react-router-dom';
 
 const SignUp = () => {
   const [name, setName] = useState();
@@ -107,6 +109,10 @@ const SignUp = () => {
 
             <div className="signup-submit-button">
               <button type="submit" onClick={signupSubmit}>SIGN UP</button>
+            </div>
+
+            <div className="or-click-to-login">
+              <NavLink to="/login">Or Click to Login</NavLink>
             </div>
           </form>
         </div>
