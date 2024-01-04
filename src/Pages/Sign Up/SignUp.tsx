@@ -75,6 +75,8 @@ const SignUp = () => {
       localStorage.setItem('key', token);
       localStorage.setItem('name', accountName);
 
+      alert("Thank You For Signing Up");
+
       navigate("/");
     } catch (error) {
       console.log("There was some error adding your Name to the Database");

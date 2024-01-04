@@ -20,13 +20,12 @@ export default function ActionAreaCard() {
 
     return (
         <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
+            <CardActionArea onClick={handleClick}>
                 <CardMedia
                     component="img"
                     height="200"
                     image={DadaWriting}
                     alt="green iguana"
-                    onClick={handleClick}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
