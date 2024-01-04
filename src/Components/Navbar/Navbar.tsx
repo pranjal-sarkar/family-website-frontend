@@ -13,12 +13,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+// importing hooks
+import {useNavigate} from 'react-router-dom';
+
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Logout'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+    const navigate = useNavigate();
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -34,6 +40,14 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const implementLogout = () => {
+        // delete JWT Token and name
+        localStorage.removeItem('key');
+        localStorage.removeItem('name');
+
+        navigate("/login");
+    }
 
     return (
         <AppBar position="static">
@@ -147,11 +161,13 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {/* {settings.map((setting) => (
+                            {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <button onClick={implementLogout}>
                                     <Typography textAlign="center">{setting}</Typography>
+                                </button>
                                 </MenuItem>
-                            ))} */}
+                            ))}
                         </Menu>
                     </Box>
                 </Toolbar>
