@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Login.css";
 
 // importing react hooks
@@ -11,11 +11,16 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
+import { useMemberAuthContext } from '../../hooks/useMemberAuthContext';
+
 const Login = () => {
   const navigate = useNavigate();
 
   const [contactNumber, setContactNumber] = useState();
   const [password, setPassword] = useState();
+  const [logged, setLogged] = useState(false);
+
+  const {dispatch} = useMemberAuthContext();
 
   const handleChangeContact = (event) => {
     setContactNumber(event.target.value);
@@ -42,8 +47,8 @@ const Login = () => {
         "password": password
       }
 
-      const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-login", params);
-      // const response = await axios.post("http://localhost:8000/api/v1.0.0/authentication/member-login", params);
+      // const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-login", params);
+      const response = await axios.post("http://localhost:8000/api/v1.0.0/authentication/member-login", params);
 
       console.log(response);
 
@@ -51,7 +56,12 @@ const Login = () => {
       localStorage.setItem('key', response.data.token);
       localStorage.setItem('name', response.data.name);
 
+      // navigate("/");
+
       if(response.data.data === "Successful Login"){
+        dispatch({ type: 'LOGIN', payload: response.data.token })
+        alert("Login Successful");
+        setLogged(!logged);
         console.log("In the function to navigate(1)");
         navigate("/");
         console.log("In the function to navigate(2)");
@@ -66,6 +76,11 @@ const Login = () => {
       console.log(error);
     }
   }
+
+  // useEffect(() => {
+  //   navigate("/");
+  //   console.log("in useEffect");
+  // }, [logged]);
 
   return (
     <>

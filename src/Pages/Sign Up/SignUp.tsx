@@ -10,12 +10,16 @@ import axios from 'axios';
 //
 import { useNavigate, NavLink } from 'react-router-dom';
 
+import { useMemberAuthContext } from '../../hooks/useMemberAuthContext';
+
 const SignUp = () => {
   const [name, setName] = useState();
   const [contactNumber, setContactNumber] = useState();
   const [birthdate, setBirthdate] = useState();
   const [birthmonth, setBirthmonth] = useState();
   const [password, setPassword] = useState();
+
+  const {dispatch} = useMemberAuthContext();
 
   const navigate = useNavigate();
 
@@ -57,8 +61,8 @@ const SignUp = () => {
       console.log(birthmonth)
       console.log(password)
 
-      // const response = await axios.post("http://127.0.0.1:8000/api/v1.0.0/authentication/member-signup", {
-      const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-signup", {
+      const response = await axios.post("http://127.0.0.1:8000/api/v1.0.0/authentication/member-signup", {
+      // const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-signup", {
         "memberName": name,
         "contactNumber": contactNumber,
         "birthdate": birthdate,
@@ -74,6 +78,8 @@ const SignUp = () => {
       const accountName = response.data.name;
       localStorage.setItem('key', token);
       localStorage.setItem('name', accountName);
+
+      dispatch({type: 'LOGIN', payload: token});
 
       alert("Thank You For Signing Up");
 

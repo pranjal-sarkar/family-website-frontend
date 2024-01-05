@@ -9,9 +9,13 @@ import Anthology from './Pages/Anthology/Anthology.tsx';
 import LoginPage from './Pages/Login/LoginPage.tsx';
 import SignUp from './Pages/Sign Up/SignUp.tsx';
 
+// importing hooks
+import { useMemberAuthContext } from './hooks/useMemberAuthContext.js';
+
 function App() {
 
-  const token = localStorage.getItem('key');
+  const {user} = useMemberAuthContext();
+  console.log("user(in App.js):" + user);
 
   return (
     <>
@@ -19,8 +23,10 @@ function App() {
         <Routes>
           <Route path='/login' element={<LoginPage />} />
           <Route path='/sign-up' element={<SignUp />} />
-          <Route path='/' element={token ? <Home /> : <LoginPage />} />
-          <Route path='/anthology' element={token ? <Anthology /> : <LoginPage />} />
+          <Route path='/' element={user ? <Home /> : <LoginPage />} />
+          <Route path='/anthology' element={user ? <Anthology /> : <LoginPage />} />
+
+          <Route path='*' element={<h1>Page Not Found</h1>} />
         </Routes>
       </BrowserRouter>
     </>
