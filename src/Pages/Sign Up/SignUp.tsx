@@ -50,7 +50,7 @@ const SignUp = () => {
 
     try {
       const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-signup';
-      
+
       const response = await axios.post(url, {
         "memberName": name,
         "contactNumber": contactNumber,
@@ -72,7 +72,7 @@ const SignUp = () => {
       dispatch({ type: 'LOGIN', payload: token });
 
       alert("Thank You For Signing Up");
-      
+
       // reroute to home page
       navigate("/");
     } catch (error) {

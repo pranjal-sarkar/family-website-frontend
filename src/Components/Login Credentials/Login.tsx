@@ -65,8 +65,9 @@ const Login = () => {
 
 
     } catch (error) {
-      alert("There was some problem with the Login");
-      console.log(error);
+      // alert("There was some problem with the Login");
+      console.log(error.response.data.data);
+      alert(error.response.data.data);
     }
   }
 
