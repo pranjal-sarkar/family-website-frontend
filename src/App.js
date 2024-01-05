@@ -14,7 +14,7 @@ import { useMemberAuthContext } from './hooks/useMemberAuthContext.js';
 
 function App() {
 
-  const {user} = useMemberAuthContext();
+  const { user } = useMemberAuthContext();
 
   return (
     <>

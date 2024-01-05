@@ -20,7 +20,10 @@ const Anthology = () => {
     useEffect(() => {
         // fetch token from local storage
         const token = localStorage.getItem('key');
-        axios.get(`${process.env.HOSTED_BACKEND_DOMAIN}/api/v1.0.0/anthology/secured/story`, {
+
+        const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/anthology/secured/story';
+
+        axios.get(url, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -46,7 +49,9 @@ const Anthology = () => {
 
             console.log("messageText in postStory: " + messageText);
 
-            const response = await axios.patch(`${process.env.HOSTED_BACKEND_DOMAIN}/api/v1.0.0/anthology/secured/story`, {
+            const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/anthology/secured/story';
+
+            const response = await axios.patch(url, {
                 story: messageText
             }, {
                 headers: {

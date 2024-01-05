@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./Login.css";
 
 // importing react hooks
@@ -9,10 +9,9 @@ import axios from 'axios';
 import process from 'process';
 
 // importing from react router
-import { useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
-// importing hooks
+// importing custom hooks
 import { useMemberAuthContext } from '../../hooks/useMemberAuthContext';
 
 const Login = () => {
@@ -20,7 +19,6 @@ const Login = () => {
 
   const [contactNumber, setContactNumber] = useState();
   const [password, setPassword] = useState();
-  const [logged, setLogged] = useState(false);
 
   const { dispatch } = useMemberAuthContext();
 
@@ -41,7 +39,13 @@ const Login = () => {
         "password": password
       }
 
-      const response = await axios.post(`${process.env.HOSTED_BACKEND_DOMAIN}/api/v1.0.0/authentication/member-login`, params);
+      console.log("process.env.HOSTED_BACKEND_DOMAIN: ");
+      console.log(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN);
+      console.log(typeof(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN));
+
+      const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-login';
+
+      const response = await axios.post(url, params);
 
       // storing JWT Token in local storage
       localStorage.setItem('key', response.data.token);

@@ -49,8 +49,9 @@ const SignUp = () => {
     event.preventDefault();
 
     try {
-      // const response = await axios.post("http://127.0.0.1:8000/api/v1.0.0/authentication/member-signup", {
-      const response = await axios.post(`${process.env.HOSTED_BACKEND_DOMAIN}/api/v1.0.0/authentication/member-signup`, {
+      const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-signup';
+      
+      const response = await axios.post(url, {
         "memberName": name,
         "contactNumber": contactNumber,
         "birthdate": birthdate,
@@ -76,6 +77,7 @@ const SignUp = () => {
       navigate("/");
     } catch (error) {
       console.log("There was some error adding your Name to the Database");
+      alert("There was some error adding your Name to the Database");
     }
   }
 
