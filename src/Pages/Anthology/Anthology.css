@@ -18,6 +18,13 @@
     .story-input-area textarea {
         width: 80vw;
     }
+
+    .story textarea {
+        height: 60vh;
+        width: 90vw;
+    
+        border: 2px solid rgb(53, 53, 239);
+    }
 }
 
 .others-story-and-save-button {
