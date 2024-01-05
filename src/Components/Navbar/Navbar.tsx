@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 // importing hooks
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -163,9 +163,9 @@ function ResponsiveAppBar() {
                         >
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                <button onClick={implementLogout}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </button>
+                                    <button onClick={implementLogout}>
+                                        <Typography textAlign="center">{setting}</Typography>
+                                    </button>
                                 </MenuItem>
                             ))}
                         </Menu>

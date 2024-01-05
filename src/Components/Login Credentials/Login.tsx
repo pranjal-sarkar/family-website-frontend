@@ -6,11 +6,13 @@ import { useState } from 'react';
 
 // importing packages
 import axios from 'axios';
+import process from 'process';
 
-
+// importing from react router
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
+// importing hooks
 import { useMemberAuthContext } from '../../hooks/useMemberAuthContext';
 
 const Login = () => {
@@ -24,47 +26,34 @@ const Login = () => {
 
   const handleChangeContact = (event) => {
     setContactNumber(event.target.value);
-    console.log(contactNumber);
   }
 
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
-    console.log(password);
   }
 
   const loginSubmit = async (event) => {
     event.preventDefault();
 
-    // console.log("first");
-    // navigate("/");
-
     try {
-      console.log(contactNumber);
-      console.log(password);
-
       const params = {
         "contactNumber": contactNumber,
         "password": password
       }
 
-      const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-login", params);
-      // const response = await axios.post("http://localhost:8000/api/v1.0.0/authentication/member-login", params);
-
-      console.log(response);
+      const response = await axios.post(`${process.env.HOSTED_BACKEND_DOMAIN}/api/v1.0.0/authentication/member-login`, params);
 
       // storing JWT Token in local storage
       localStorage.setItem('key', response.data.token);
       localStorage.setItem('name', response.data.name);
 
-      // navigate("/");
-
       if (response.data.data === "Successful Login") {
+        // updating global variable
         dispatch({ type: 'LOGIN', payload: response.data.token })
+
         alert("Login Successful");
-        setLogged(!logged);
-        console.log("In the function to navigate(1)");
+
         navigate("/");
-        console.log("In the function to navigate(2)");
       }
       else if (response.data.data === "Family Member With This Phone Number Not Found. Please Sign Up") {
         alert("Please Register before using the app.");
@@ -76,11 +65,6 @@ const Login = () => {
       console.log(error);
     }
   }
-
-  // useEffect(() => {
-  //   navigate("/");
-  //   console.log("in useEffect");
-  // }, [logged]);
 
   return (
     <>

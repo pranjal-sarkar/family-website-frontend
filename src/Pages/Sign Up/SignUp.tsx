@@ -6,10 +6,12 @@ import { useState } from 'react';
 
 // import packages
 import axios from 'axios';
+import process from 'process';
 
-//
+// importing from react router dom
 import { useNavigate, NavLink } from 'react-router-dom';
 
+// importing hooks
 import { useMemberAuthContext } from '../../hooks/useMemberAuthContext';
 
 const SignUp = () => {
@@ -19,50 +21,36 @@ const SignUp = () => {
   const [birthmonth, setBirthmonth] = useState();
   const [password, setPassword] = useState();
 
-  const {dispatch} = useMemberAuthContext();
+  const { dispatch } = useMemberAuthContext();
 
   const navigate = useNavigate();
 
   const handleChangeName = (event) => {
     setName(event.target.value);
-    console.log(name);
   }
 
   const handleChangeContact = (event) => {
     setContactNumber(event.target.value);
-
   }
 
   const handleChangeBirthdate = (event) => {
     setBirthdate(event.target.value);
-
   }
 
   const handleChangeBirthmonth = (event) => {
     setBirthmonth(event.target.value);
-
   }
 
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
-
   }
 
   const signupSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(name);
-
     try {
-      console.log("Hello");
-      console.log(name)
-      console.log(contactNumber)
-      console.log(birthdate)
-      console.log(birthmonth)
-      console.log(password)
-
       // const response = await axios.post("http://127.0.0.1:8000/api/v1.0.0/authentication/member-signup", {
-      const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-signup", {
+      const response = await axios.post(`${process.env.HOSTED_BACKEND_DOMAIN}/api/v1.0.0/authentication/member-signup`, {
         "memberName": name,
         "contactNumber": contactNumber,
         "birthdate": birthdate,
@@ -79,10 +67,12 @@ const SignUp = () => {
       localStorage.setItem('key', token);
       localStorage.setItem('name', accountName);
 
-      dispatch({type: 'LOGIN', payload: token});
+      // updating global variable
+      dispatch({ type: 'LOGIN', payload: token });
 
       alert("Thank You For Signing Up");
-
+      
+      // reroute to home page
       navigate("/");
     } catch (error) {
       console.log("There was some error adding your Name to the Database");

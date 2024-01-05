@@ -10,8 +10,6 @@ import ActionAreaCard from '../../Components/Cards/Card.tsx';
 import account_image from '../../Assets/Account_Image.png';
 
 const Home = () => {
-  // const [name, setName] = useState();
-  
   // get the name
   const fetchedName = localStorage.getItem('name');
   

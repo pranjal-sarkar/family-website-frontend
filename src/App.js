@@ -3,7 +3,7 @@ import './App.css';
 // importing packages
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// importing components
+// importing pages
 import Home from './Pages/Home Page/Home.tsx';
 import Anthology from './Pages/Anthology/Anthology.tsx';
 import LoginPage from './Pages/Login/LoginPage.tsx';
@@ -15,7 +15,6 @@ import { useMemberAuthContext } from './hooks/useMemberAuthContext.js';
 function App() {
 
   const {user} = useMemberAuthContext();
-  console.log("user(in App.js):" + user);
 
   return (
     <>
