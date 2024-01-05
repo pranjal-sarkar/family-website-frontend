@@ -57,11 +57,16 @@ const Anthology = () => {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
-            })
+            });
+
+            console.log(response);
+
+            alert(response.data.data);
 
             console.log("Posting after Save button was clicked!");
         } catch (error) {
             console.log("There was some error saving your story. Error: \n");
+            alert("There was some error saving your story. Error: \n");
             console.log(error);
         }
     }
