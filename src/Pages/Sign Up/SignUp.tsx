@@ -61,8 +61,8 @@ const SignUp = () => {
       console.log(birthmonth)
       console.log(password)
 
-      const response = await axios.post("http://127.0.0.1:8000/api/v1.0.0/authentication/member-signup", {
-      // const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-signup", {
+      // const response = await axios.post("http://127.0.0.1:8000/api/v1.0.0/authentication/member-signup", {
+      const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-signup", {
         "memberName": name,
         "contactNumber": contactNumber,
         "birthdate": birthdate,

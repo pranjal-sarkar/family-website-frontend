@@ -20,7 +20,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [logged, setLogged] = useState(false);
 
-  const {dispatch} = useMemberAuthContext();
+  const { dispatch } = useMemberAuthContext();
 
   const handleChangeContact = (event) => {
     setContactNumber(event.target.value);
@@ -43,12 +43,12 @@ const Login = () => {
       console.log(password);
 
       const params = {
-        "contactNumber" : contactNumber,
+        "contactNumber": contactNumber,
         "password": password
       }
 
-      // const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-login", params);
-      const response = await axios.post("http://localhost:8000/api/v1.0.0/authentication/member-login", params);
+      const response = await axios.post("https://ekata-backend.onrender.com/api/v1.0.0/authentication/member-login", params);
+      // const response = await axios.post("http://localhost:8000/api/v1.0.0/authentication/member-login", params);
 
       console.log(response);
 
@@ -58,7 +58,7 @@ const Login = () => {
 
       // navigate("/");
 
-      if(response.data.data === "Successful Login"){
+      if (response.data.data === "Successful Login") {
         dispatch({ type: 'LOGIN', payload: response.data.token })
         alert("Login Successful");
         setLogged(!logged);
@@ -66,7 +66,7 @@ const Login = () => {
         navigate("/");
         console.log("In the function to navigate(2)");
       }
-      else if(response.data.data === "Family Member With This Phone Number Not Found. Please Sign Up"){
+      else if (response.data.data === "Family Member With This Phone Number Not Found. Please Sign Up") {
         alert("Please Register before using the app.");
       }
 
