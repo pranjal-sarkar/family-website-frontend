@@ -9,6 +9,9 @@ import "./Anthology.css";
 // importing Components
 import ResponsiveAppBar from '../../Components/Navbar/Navbar.tsx';
 import Footer from '../../Components/Footer/Footer.tsx';
+import TransitionExample from '../../Components/See Others Story/TransitionExample.tsx';
+import SaveWorkAndContinue from '../../Components/Save Work And Continue/SaveWorkAndContinue.tsx';
+import SaveWorkAndExit from '../../Components/Save Work And Exit/SaveWorkAndExit.tsx';
 
 // for APIs
 import axios from 'axios';
@@ -42,35 +45,6 @@ const Anthology = () => {
         setMessageText(e.target.value);
     }
 
-    const postStory = async () => {
-        try {
-            // fetch token from local storage
-            const token = localStorage.getItem('key');
-
-            console.log("messageText in postStory: " + messageText);
-
-            const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/anthology/secured/story';
-
-            const response = await axios.patch(url, {
-                story: messageText
-            }, {
-                headers: {
-                    Authorization: 'Bearer ' + token
-                }
-            });
-
-            console.log(response);
-
-            alert(response.data.data);
-
-            console.log("Posting after Save button was clicked!");
-        } catch (error) {
-            console.log("There was some error saving your story. Error: \n");
-            alert("There was some error saving your story. Error: \n");
-            console.log(error);
-        }
-    }
-
     return (
         <>
             <ResponsiveAppBar />
@@ -85,10 +59,13 @@ const Anthology = () => {
                 </div>
                 <div className="others-story-and-save-button">
                     <div className="others-story">
-                        See others' story
+                        <TransitionExample />
+                    </div>
+                    <div className="save-and-exit">
+                        <SaveWorkAndExit />
                     </div>
                     <div className="save-button">
-                        <button onClick={postStory}>SAVE WORK</button>
+                        <SaveWorkAndContinue props={messageText} />
                     </div>
                 </div>
             </div>
