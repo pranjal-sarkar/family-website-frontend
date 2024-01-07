@@ -62,7 +62,7 @@ const Anthology = () => {
                         <TransitionExample />
                     </div>
                     <div className="save-and-exit">
-                        <SaveWorkAndExit />
+                        <SaveWorkAndExit props={messageText} />
                     </div>
                     <div className="save-button">
                         <SaveWorkAndContinue props={messageText} />
