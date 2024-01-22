@@ -9,13 +9,15 @@ import "./Anthology.css";
 // importing Components
 import ResponsiveAppBar from '../../Components/Navbar/Navbar.tsx';
 import Footer from '../../Components/Footer/Footer.tsx';
-import TransitionExample from '../../Components/See Others Story/TransitionExample.tsx';
 import SaveWorkAndContinue from '../../Components/Save Work And Continue/SaveWorkAndContinue.tsx';
 import SaveWorkAndExit from '../../Components/Save Work And Exit/SaveWorkAndExit.tsx';
 
 // for APIs
 import axios from 'axios';
 import process from 'process';
+
+// importing functions from reac-router-dom
+import { NavLink } from 'react-router-dom';
 
 const Anthology = () => {
     const [messageText, setMessageText] = useState("");
@@ -58,8 +60,11 @@ const Anthology = () => {
                     <textarea value={messageText} onChange={handleChangeTextArea} />
                 </div>
                 <div className="others-story-and-save-button">
+                    {/* <div className="others-story">
+                        <OtherStory />
+                    </div> */}
                     <div className="others-story">
-                        <TransitionExample />
+                        <NavLink to='/anthology/other-story'>See Other's Story</NavLink>
                     </div>
                     <div className="save-and-exit">
                         <SaveWorkAndExit props={messageText} />

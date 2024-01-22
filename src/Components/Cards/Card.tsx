@@ -32,7 +32,7 @@ export default function ActionAreaCard() {
                         Family Anthology
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Let's Write Our Story Together! Please Click Here.
+                        Please click here to write your Story!
                     </Typography>
                 </CardContent>
             </CardActionArea>
