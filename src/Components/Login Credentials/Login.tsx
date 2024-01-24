@@ -44,6 +44,7 @@ const Login = () => {
       console.log(typeof(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN));
 
       const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-login';
+      // const url = 'http://localhost:8000' + '/api/v1.0.0/authentication/member-login';
 
       const response = await axios.post(url, params);
 

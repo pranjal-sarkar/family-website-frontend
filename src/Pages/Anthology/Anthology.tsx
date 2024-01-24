@@ -17,16 +17,18 @@ import axios from 'axios';
 import process from 'process';
 
 // importing functions from reac-router-dom
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Anthology = () => {
     const [messageText, setMessageText] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         // fetch token from local storage
         const token = localStorage.getItem('key');
 
         const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/anthology/secured/story';
+        // const url = 'http://localhost:8000' + '/api/v1.0.0/anthology/secured/story';
 
         axios.get(url, {
             headers: {
@@ -36,6 +38,14 @@ const Anthology = () => {
             changeState(results.data.data.story);
         }).catch((error) => {
             console.log(error);
+
+            // implement logout
+            localStorage.removeItem('key');
+            localStorage.removeItem('name');
+
+            alert("Your session has timed out. Please login again");
+
+            navigate('/login');
         })
     }, []);
 
