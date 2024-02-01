@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.text-field-contact-number-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 5vh;
+}

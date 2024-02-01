@@ -14,6 +14,14 @@ import { useNavigate, NavLink } from 'react-router-dom';
 // importing custom hooks
 import { useMemberAuthContext } from '../../hooks/useMemberAuthContext';
 
+// importing images
+import src from '../../Assets/DadaWriting.jpeg';
+
+// importing components
+import ContactNumberInput from '../Contact Number Input/ContactNumberInput.tsx';
+import PasswordInput from '../Password Input/PasswordInput.tsx';
+import LoginSubmitButton from '../Login Submit Button/LoginSubmitButton.tsx';
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -41,7 +49,7 @@ const Login = () => {
 
       console.log("process.env.HOSTED_BACKEND_DOMAIN: ");
       console.log(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN);
-      console.log(typeof(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN));
+      console.log(typeof (process.env.REACT_APP_HOSTED_BACKEND_DOMAIN));
 
       const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-login';
 
@@ -73,24 +81,28 @@ const Login = () => {
 
   return (
     <>
-      <div className="login-components">
-        <h1>LOGIN</h1>
-        <div className="form-tag">
-          <form>
-            <div className="contact-input">
-              <input type="number" placeholder='Enter Your Contact Number' onChange={handleChangeContact} />
-            </div>
+      <div className="login-heading">
+        <h1 className='display-flex'>Login</h1>
+      </div>
 
-            <div className="password-input">
-              <input type="password" placeholder='Enter Your Password' onChange={handleChangePassword} />
-            </div>
+      <div className="welcome-back-writing">
+        <h1 className='display-flex'>Welcome back!</h1>
+      </div>
 
-            <div className="login-submit-button">
-              <p><NavLink to="/sign-up">Or Click to Register</NavLink> </p>
-              <button type="submit" onClick={loginSubmit}>LOGIN</button>
-            </div>
-          </form>
-        </div>
+      <div className="contact-number-input">
+        <ContactNumberInput />
+      </div>
+
+      <div className="password-input">
+        <PasswordInput />
+      </div>
+
+      <div className="or-register-here-link display-flex">
+        <p>or <span>Register here</span></p>
+      </div>
+
+      <div className="login-submit-button">
+        <LoginSubmitButton />
       </div>
     </>
   )
