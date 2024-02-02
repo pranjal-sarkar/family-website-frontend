@@ -37,6 +37,7 @@ const Login = () => {
     setPassword(event.target.value);
   }
 
+<<<<<<< HEAD
   const loginSubmit = async (event) => {
     event.preventDefault();
 
@@ -62,6 +63,13 @@ const Login = () => {
       if (response.data.data === "Successful Login") {
         // updating global variable
         dispatch({ type: 'LOGIN', payload: response.data.token })
+=======
+  return (
+    <>
+      <div className="login-heading">
+        <h1 className='display-flex'>Login</h1>
+      </div>
+>>>>>>> login-style
 
       <div className="welcome-back-writing">
         <h1 className='display-flex'>Welcome back!</h1>

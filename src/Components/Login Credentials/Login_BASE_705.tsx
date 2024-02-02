@@ -1,19 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./Login.css";
 
 // importing react hooks
 import { useState } from 'react';
+
+// importing packages
+import axios from 'axios';
+import process from 'process';
 
 // importing from react router
 import { useNavigate, NavLink } from 'react-router-dom';
 
 // importing custom hooks
 import { useMemberAuthContext } from '../../hooks/useMemberAuthContext';
-
-// importing components
-import ContactNumberInput from '../Contact Number Input/ContactNumberInput.tsx';
-import PasswordInput from '../Password Input/PasswordInput.tsx';
-import LoginSubmitButton from '../Login Submit Button/LoginSubmitButton.tsx';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,13 +24,7 @@ const Login = () => {
 
   const handleChangeContact = (event) => {
     setContactNumber(event.target.value);
-    console.log(contactNumber);
   }
-
-  useEffect(() => {
-    console.log("contactNumber : " + contactNumber);
-    console.log("password : " + password);
-  }, [contactNumber, password])
 
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
@@ -51,7 +44,6 @@ const Login = () => {
       console.log(typeof(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN));
 
       const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-login';
-      // const url = 'http://localhost:8000' + '/api/v1.0.0/authentication/member-login';
 
       const response = await axios.post(url, params);
 
@@ -63,28 +55,42 @@ const Login = () => {
         // updating global variable
         dispatch({ type: 'LOGIN', payload: response.data.token })
 
-      <div className="welcome-back-writing">
-        <h1 className='display-flex'>Welcome back!</h1>
-      </div>
+        alert("Login Successful");
 
-      <div className="contact-number-input">
-        <ContactNumberInput contactNumber={contactNumber} setContactNumber={setContactNumber} />
-      </div>
+        navigate("/");
+      }
+      else if (response.data.data === "Family Member With This Phone Number Not Found. Please Sign Up") {
+        alert("Please Register before using the app.");
+      }
 
-      <div className="password-input">
-        <PasswordInput password={password} setPassword={setPassword} />
-      </div>
 
-      <div className="or-register-here-link display-flex">
-        <p>or
-          <span>
-            <NavLink to='/sign-up'>Register here</NavLink>
-          </span>
-        </p>
-      </div>
+    } catch (error) {
+      // alert("There was some problem with the Login");
+      console.log(error.response.data.data);
+      alert(error.response.data.data);
+    }
+  }
 
-      <div className="login-submit-button">
-        <LoginSubmitButton contactNumber={contactNumber} password={password} />
+  return (
+    <>
+      <div className="login-components">
+        <h1>LOGIN</h1>
+        <div className="form-tag">
+          <form>
+            <div className="contact-input">
+              <input type="number" placeholder='Enter Your Contact Number' onChange={handleChangeContact} />
+            </div>
+
+            <div className="password-input">
+              <input type="password" placeholder='Enter Your Password' onChange={handleChangePassword} />
+            </div>
+
+            <div className="login-submit-button">
+              <p><NavLink to="/sign-up">Or Click to Register</NavLink> </p>
+              <button type="submit" onClick={loginSubmit}>LOGIN</button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   )

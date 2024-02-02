@@ -44,3 +44,7 @@
 .others-story {
     text-decoration: underline;
 }
+
+.page-heading h1 {
+    text-align: center;
+}
