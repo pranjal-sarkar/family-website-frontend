@@ -13,7 +13,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './PasswordInput.css';
 
-export default function PasswordInput() {
+export default function PasswordInput({password, setPassword}) {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -43,6 +43,9 @@ export default function PasswordInput() {
               </InputAdornment>
             }
             label="Password"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setPassword(event.target.value);
+            }}
           />
         </FormControl>
       </div>

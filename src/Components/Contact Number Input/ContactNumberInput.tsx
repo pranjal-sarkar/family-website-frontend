@@ -2,8 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './ContactNumberInput.css';
+import { useState } from 'react';
 
-export default function ContactNumberInput() {
+export default function ContactNumberInput({contactNumber, setContactNumber}) {
   return (
     <Box
       component="form"
@@ -19,6 +20,9 @@ export default function ContactNumberInput() {
           label="Contact Number"
           type="number"
           autoComplete="current-password"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setContactNumber(event.target.value);
+          }}
         />
       </div>
     </Box>

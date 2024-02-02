@@ -14,7 +14,7 @@ export const authReducer = (state, action) => {
 }
 
 export const MemberAuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { 
+  const [state, dispatch] = useReducer(authReducer, {
     user: null
   })
 
@@ -22,21 +22,21 @@ export const MemberAuthContextProvider = ({ children }) => {
     const user = localStorage.getItem('key');
     console.log("user(in authcontext): ");
     console.log(user);
-    console.log(typeof(user));
+    console.log(typeof (user));
 
     if (user) {
-      dispatch({ type: 'LOGIN', payload: user }) 
+      dispatch({ type: 'LOGIN', payload: user })
     }
-    else{
-        console.log("user: " + user);
+    else {
+      console.log("user: " + user);
     }
   }, [])
 
   console.log('AuthContext state:', state)
-  
+
   return (
     <MemberAuthContext.Provider value={{ ...state, dispatch }}>
-      { children }
+      {children}
     </MemberAuthContext.Provider>
   )
 
