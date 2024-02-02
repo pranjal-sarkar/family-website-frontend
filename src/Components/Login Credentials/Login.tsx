@@ -37,31 +37,11 @@ const Login = () => {
     setPassword(event.target.value);
   }
 
-  const loginSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const params = {
-        "contactNumber": contactNumber,
-        "password": password
-      }
-
-      console.log("process.env.HOSTED_BACKEND_DOMAIN: ");
-      console.log(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN);
-      console.log(typeof(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN));
-
-      const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-login';
-      // const url = 'http://localhost:8000' + '/api/v1.0.0/authentication/member-login';
-
-      const response = await axios.post(url, params);
-
-      // storing JWT Token in local storage
-      localStorage.setItem('key', response.data.token);
-      localStorage.setItem('name', response.data.name);
-
-      if (response.data.data === "Successful Login") {
-        // updating global variable
-        dispatch({ type: 'LOGIN', payload: response.data.token })
+  return (
+    <>
+      <div className="login-heading">
+        <h1 className='display-flex'>Login</h1>
+      </div>
 
       <div className="welcome-back-writing">
         <h1 className='display-flex'>Welcome back!</h1>
