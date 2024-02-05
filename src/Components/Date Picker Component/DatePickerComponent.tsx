@@ -10,7 +10,7 @@ export default function DatePickerComponent({dateOfBirth, setDateOfBirth}) {
     console.log(event);
 
     var date=event['$D'];
-    var month = event['$M'];
+    var month = event['$M'] + 1;
 
     setDateOfBirth({date, month});
   }
@@ -18,7 +18,7 @@ export default function DatePickerComponent({dateOfBirth, setDateOfBirth}) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker']}>
-        <DatePicker label="Basic date picker" onChange={datePickerComponent} />
+        <DatePicker label="Date of Birth" onChange={datePickerComponent} />
       </DemoContainer>
     </LocalizationProvider>
   );
