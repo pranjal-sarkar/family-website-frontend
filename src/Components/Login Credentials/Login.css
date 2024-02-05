@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Roboto+Mono:wght@300&family=Roboto:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Roboto+Mono:wght@300&family=Roboto:wght@300&display=swap');
 
 .login-heading {
     height: 15vh;
@@ -27,6 +27,7 @@
     font-family: 'Dancing Script', cursive;
     /* font-family: 'Roboto', sans-serif;
     font-family: 'Roboto Mono', monospace; */
+    margin-bottom: 5vh;
 }
 
 .or-register-here-link {
