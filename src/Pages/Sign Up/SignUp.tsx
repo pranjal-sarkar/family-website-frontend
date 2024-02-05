@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 // import react hooks
 import { useState } from 'react';
 
-// importing hooks
-import { useMemberAuthContext } from '../../hooks/useMemberAuthContext';
+// importing from react router dom
+import { NavLink } from 'react-router-dom';
 
 // importing components
 import ContactNumberInput from '../../Components/Contact Number Input/ContactNumberInput.tsx';
@@ -58,8 +58,12 @@ const SignUp = () => {
         <PasswordInput password={password} setPassword={setPassword} />
       </div>
 
-      <div className="login-submit-button">
+      <div className="signup-submit-button">
         <SignUpSubmitButton signUpCreds={signUpCreds} />
+      </div>
+
+      <div className="login-link">
+        <p>Already Have an Account? <span><NavLink to='/login'>Log in</NavLink></span></p>
       </div>
     </>
   )
