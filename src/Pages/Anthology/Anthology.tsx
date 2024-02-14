@@ -27,8 +27,7 @@ const Anthology = () => {
         // fetch token from local storage
         const token = localStorage.getItem('key');
 
-        const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/anthology/secured/story';
-        // const url = 'http://localhost:8000' + '/api/v1.0.0/anthology/secured/story';
+        const url = process.env.REACT_APP_GET_SAVED_WORK;
 
         axios.get(url, {
             headers: {

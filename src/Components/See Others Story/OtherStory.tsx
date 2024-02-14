@@ -25,8 +25,7 @@ const OtherStory = () => {
   const fetchData = async () => {
     const token = localStorage.getItem('key');
 
-    const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/anthology/' + 'secured/stories';
-    // const url = 'http://localhost:8000' + '/api/v1.0.0/anthology/' + 'secured/stories';
+    const url = process.env.REACT_APP_SEE_OTHERS_STORY;
     try {
       const response = await axios.get(url, {
         headers: {

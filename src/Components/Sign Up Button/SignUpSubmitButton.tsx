@@ -22,7 +22,7 @@ const SignUpSubmitButton = ({signUpCreds}) => {
     event.preventDefault();
 
     try {
-      const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-signup';
+      const url = process.env.REACT_APP_SIGN_UP_ROUTE;
 
       const response = await axios.post(url, {
         "memberName": signUpCreds.name,

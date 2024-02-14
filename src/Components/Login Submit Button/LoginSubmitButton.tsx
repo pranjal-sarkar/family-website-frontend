@@ -33,13 +33,24 @@ export default function LoginSubmitButton({ contactNumber, password }) {
       console.log(process.env.REACT_APP_HOSTED_BACKEND_DOMAIN);
       console.log(typeof (process.env.REACT_APP_HOSTED_BACKEND_DOMAIN));
 
-      const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/authentication/member-login';
+      const url = process.env.REACT_APP_LOGIN_ROUTE;
+
+      console.log("process.env.REACT_APP_LOGIN_ROUTE: ");
+      console.log(process.env.REACT_APP_LOGIN_ROUTE);
+      console.log(typeof(process.env.REACT_APP_LOGIN_ROUTE));
+
+      console.log("url: ");
+      console.log(url);
+      console.log(typeof(url));
 
       const response = await axios.post(url, params);
 
       // storing JWT Token in local storage
       localStorage.setItem('key', response.data.token);
       localStorage.setItem('name', response.data.name);
+
+      console.log("response");
+      console.log(response);
 
       if (response.data.data === "Successful Login") {
         // updating global variable
@@ -56,8 +67,9 @@ export default function LoginSubmitButton({ contactNumber, password }) {
 
     } catch (error) {
       // alert("There was some problem with the Login");
-      console.log(error.response.data.data);
-      alert(error.response.data.data);
+      // console.log(error.response.data.data);
+      // alert(error.response.data.data);
+      console.log(error)
     }
   }
   return (

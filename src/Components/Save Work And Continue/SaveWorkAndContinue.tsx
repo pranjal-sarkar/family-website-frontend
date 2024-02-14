@@ -19,7 +19,7 @@ const SaveWorkAndContinue = (props) => {
 
             console.log("messageText in postStory: " + props.props);
 
-            const url = process.env.REACT_APP_HOSTED_BACKEND_DOMAIN + '/api/v1.0.0/anthology/secured/story';
+            const url = process.env.REACT_APP_SAVE_WORK_AND_CONTINUE;
 
             const response = await axios.patch(url, {
                 story: props.props
